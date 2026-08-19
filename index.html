@@ -21,10 +21,43 @@
           Pick a pixel art image:&nbsp;
           <input id="file-input" type="file" accept="image/*" />
         </label>
+        <label class="check">
+          <input id="advanced-toggle" type="checkbox" />
+          Advanced mode
+        </label>
+        <div id="advanced" hidden>
+          <div class="help">
+            Set sampling offset and step (fractional px) manually below.
+          </div>
+          <div class="controls">
+            <label>
+              Offset X
+              <input id="offset-x" type="number" value="0" min="0" step="0.05" />
+            </label>
+            <label>
+              Offset Y
+              <input id="offset-y" type="number" value="0" min="0" step="0.05" />
+            </label>
+            <label>
+              Step X
+              <input id="step-x" type="number" value="1" min="1" step="0.05" />
+            </label>
+            <label>
+              Step Y
+              <input id="step-y" type="number" value="1" min="1" step="0.05" />
+            </label>
+          </div>
+          <label class="check">
+            <input id="link-xy" type="checkbox" checked />
+            Link X and Y steps
+          </label>
+        </div>
       </div>
-      <div>Scale factor guess: <span id="scale-factor">1</span>&times;</div>
       <canvas id="original-canvas"></canvas>
-      <canvas id="scaled-canvas" class="pixelated"></canvas>
+      <div id="output-pane">
+        <div id="status"></div>
+        <canvas id="scaled-canvas" class="pixelated"></canvas>
+      </div>
     </div>
     <script type="module" src="app.js"></script>
   </body>

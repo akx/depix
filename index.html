@@ -4,9 +4,28 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Depix</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <div id="container">
+      <div>
+        <div class="help">
+          This app detects the scale factor of an upscaled pixel art image and
+          scales it down for you. You can right-click the result image to save
+          or copy it.
+          <br />
+          Implementation: <a href="https://twitter.com/akx">@akx</a>, algorithm:
+          <a href="https://twitter.com/ochrons">@ochrons</a>
+        </div>
+        <label>
+          Pick a pixel art image:&nbsp;
+          <input id="file-input" type="file" accept="image/*" />
+        </label>
+      </div>
+      <div>Scale factor guess: <span id="scale-factor">1</span>&times;</div>
+      <canvas id="original-canvas"></canvas>
+      <canvas id="scaled-canvas" class="pixelated"></canvas>
+    </div>
+    <script type="module" src="app.js"></script>
   </body>
 </html>

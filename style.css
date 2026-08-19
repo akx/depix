@@ -29,6 +29,10 @@ canvas {
   margin: 1em;
 }
 
+canvas.pixelated {
+  image-rendering: pixelated;
+}
+
 #container {
   display: grid;
   grid-template-columns: 50% 50%;

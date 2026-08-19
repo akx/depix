@@ -230,6 +230,12 @@ const stepXInput = /** @type {HTMLInputElement} */ (
 const stepYInput = /** @type {HTMLInputElement} */ (
   document.getElementById("step-y")
 );
+const zoomInput = /** @type {HTMLInputElement} */ (
+  document.getElementById("zoom")
+);
+const zoomValueEl = /** @type {HTMLElement} */ (
+  document.getElementById("zoom-value")
+);
 const statusEl = /** @type {HTMLElement} */ (document.getElementById("status"));
 const originalCanvas = /** @type {HTMLCanvasElement} */ (
   document.getElementById("original-canvas")
@@ -273,6 +279,13 @@ function readGrid() {
   };
 }
 
+function applyZoom() {
+  const zoom = Math.max(1, Math.round(Number(zoomInput.value) || 1));
+  zoomValueEl.textContent = `${zoom}×`;
+  scaledCanvas.style.width = `${scaledCanvas.width * zoom}px`;
+  scaledCanvas.style.height = `${scaledCanvas.height * zoom}px`;
+}
+
 function render() {
   advancedPanel.hidden = !advancedToggle.checked;
   if (!(sourceImage && sourceData)) {
@@ -287,6 +300,7 @@ function render() {
       scaleFactor;
     drawScaled(scaledCanvas, sourceImage, scaleFactor);
     statusEl.textContent = `Scale factor guess: ${formatNumber(scaleFactor)}×`;
+    applyZoom();
     return;
   }
   const grid = readGrid();
@@ -299,6 +313,7 @@ function render() {
     `Sampling from (${formatNumber(grid.offsetX)}, ${formatNumber(grid.offsetY)})` +
     ` every ${formatNumber(grid.stepX)} x ${formatNumber(grid.stepY)} px` +
     ` -> ${out.width} x ${out.height}`;
+  applyZoom();
 }
 
 fileInput.addEventListener("change", async () => {
@@ -316,6 +331,7 @@ fileInput.addEventListener("change", async () => {
 });
 
 advancedToggle.addEventListener("change", render);
+zoomInput.addEventListener("input", applyZoom);
 
 for (const input of [offsetXInput, offsetYInput, stepXInput, stepYInput]) {
   input.addEventListener("input", () => {

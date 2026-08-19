@@ -79,4 +79,17 @@ canvas {
 
 #output-pane {
   text-align: center;
+  overflow: auto;
+}
+
+label.zoom {
+  margin: auto;
+  display: flex;
+  white-space: nowrap;
+  max-width: 20em;
+}
+
+label.zoom input {
+  padding: 0;
+  background: none;
 }

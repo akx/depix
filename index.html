@@ -56,6 +56,10 @@
       <canvas id="original-canvas"></canvas>
       <div id="output-pane">
         <div id="status"></div>
+        <label class="zoom">
+          <span>Zoom: <span id="zoom-value">1&times;</span></span>
+          <input id="zoom" type="range" min="1" max="16" step="1" value="1" />
+        </label>
         <canvas id="scaled-canvas" class="pixelated"></canvas>
       </div>
     </div>
